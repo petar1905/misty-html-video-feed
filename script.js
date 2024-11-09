@@ -4,16 +4,16 @@ let imageWidth = 400;
 let imageHeight = 540;
 
 async function connect(ip) {
-  const response = await fetch(`http://${ip}/api/videostreaming/start`, {
-    method: "POST",
-    body: JSON.stringify({
-      "Port": 5678,
-      "Rotation": 90,
-      "Width": imageWidth,
-      "Height": imageHeight,
-      "Quality": 5
-    })
-  });
+    const response = await fetch(`http://${ip}/api/videostreaming/start`, {
+        method: "POST",
+        body: JSON.stringify({
+            "Port": 5678,
+            "Rotation": 90,
+            "Width": imageWidth,
+            "Height": imageHeight,
+            "Quality": 5
+        })
+    });
   console.log(response);
 
   if (response.status === 200) {
@@ -61,14 +61,14 @@ function drawMessage(evt) {
 }
 
 async function restartMisty(ip) {
-  const response = await fetch(`http://${ip}/api/reboot`, {
-    method: "POST",
-    body: JSON.stringify({
-      "Core": false,
-      "SensoryServices": true
-    })
-  });
-  return response;
+    const response = await fetch(`http://${ip}/api/reboot`, {
+        method: "POST",
+        body: JSON.stringify({
+            "Core": false,
+            "SensoryServices": true
+        })
+    });
+    return response;
 }
 
 let ip = prompt("What is Misty's IP address?");
@@ -76,5 +76,5 @@ let ip = prompt("What is Misty's IP address?");
 restartMisty(ip);
 
 setTimeout(() => {
-  connect(ip);
+    connect(ip);
 }, 50*1000);

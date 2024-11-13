@@ -71,6 +71,20 @@ async function restartMisty(ip) {
     return response;
 }
 
+/*  
+    ВАЖНО: Стрийминг услугата, използвана от Misty, е в алфа версия, както е споменато в документацията. 
+    https://docs.mistyrobotics.com/misty-ii/web-api/api-reference/#startvideostreaming
+    Трябва да се знае, че при стартиране на стрийм от гореспоменатата API точка, може да се наблюдава само
+    от един клиент в даден момент,  и при рефреш на уеб страницата не може да се достъпи потокът от камерата отново.
+    Workaround за това ограничение е рестартиране на робота през API точката /api/reboot, но недостатъкът е, че
+    всеки път рефреш трябва се спре текущият стрийм и да се чакат около 50 секунди за да се пусне нов.
+
+    Стремете се камерата на всеки робот да се наблюдава САМО от един клиент (в този случай прозорец на бразуера) 
+    и да се избягват рефрешове на уеб страницата!!!
+
+    - Петър Владов №20524
+*/
+
 let ip = prompt("What is Misty's IP address?");
 
 let restartConfirmation = confirm("Would you like to restart Misty? It will take approximately 50 seconds.\nAfter that, the camera feed will automatically start.");

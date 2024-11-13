@@ -73,7 +73,12 @@ async function restartMisty(ip) {
 
 let ip = prompt("What is Misty's IP address?");
 
-restartMisty(ip);
+let restartConfirmation = confirm("Would you like to restart Misty? It will take approximately 50 seconds.\nAfter that, the camera feed will automatically start.");
+
+if (restartConfirmation == true) {
+    console.log("Restarting Misty...");
+    restartMisty(ip);
+}
 
 setTimeout(() => {
     connect(ip);
